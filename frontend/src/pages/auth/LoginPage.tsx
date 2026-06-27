@@ -1,121 +1,94 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import RoleCard from "@/components/RoleCard";
-import { User, Stethoscope } from "lucide-react";
 import { Lock, Mail } from "lucide-react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
-  const [selectedRole, setSelectedRole] = useState("patient");
-  const navigate = useNavigate();
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-100">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl">
-            Iniciar sesión
-          </CardTitle>
-        </CardHeader>
 
-        <CardContent>
-          <form className="space-y-6">
+function LoginPage(){
+    return(
+              
 
-            {/* Selector de rol */}
 
-              <div className="mt-3 grid grid-cols-2 gap-3">
+              <section className="w-screen h-screen flex justify-center items-center bg-indigo-500">
+                <div className="w-230 bg-blue-100 inset-0 h-120 relative fit flex justify-center items-center overflow-hidden rounded-md  shadow-xl">
+                  {[
+                    { width: 260, height: 60, bg: 'bg-blue-300', ml: 100 },
+                    { width: 260, height: 60, bg: 'bg-blue-400', ml: 170 },
+                    { width: 260, height: 60, bg: 'bg-blue-500', ml: 240 },
+                    { width: 260, height: 60, bg: 'bg-blue-600', ml: 310 },
+                    { width: 100, height: 20, bg: 'bg-blue-300', ml: 200, mb: 50 },
+                    { width: 100, height: 30, bg: 'bg-blue-500', ml: 10, mt: 100 },
+                    { width: 90, height: 20, bg: 'bg-blue-200', ml: 160, mt: 100 },
+                    { width: 100, height: 15, bg: 'bg-blue-600', ml: 220, mb: 160 },
+                  ].map((circle, index) => (
+                    <div
+                      key={index}
+                      className={`
+                        rounded-full rotate-130 absolute
+                        w-${circle.width} h-${circle.height}
+                        ${circle.bg}
+                        ml-${circle.ml}
+                        ${circle.mt ? `mt-${circle.mt}` : ''}
+                        ${circle.mb ? `mb-${circle.mb}` : ''}
+                      `}
+                    />
+                  ))}
+                  <div className="absolute inset-0 z-10 grid grid-cols-2 p-8 gap-5">
+                    <div className="grid grid-cols-1  items-center ">
+                        <Label htmlFor="login" className="block text-center text-xl font-sans font-bold font-caveat text-blue-400">
+                          INICIAR SESIÓN
+                        </Label>
+                            <input
+                            id="User"
+                              type="text"
+                              placeholder="Usuario"
+                              className="
+                                transition-all hover:scale-105 
+                                border-none 
+                                rounded-none 
+                                outline-none focus:outline-none 
+                                focus:ring-0 focus:ring-offset-0
+                                border-b-2 border-solid border-blue-700 
+                              "
+                            />
+                            <input
+                            id="Email"
+                              type="email"
+                              placeholder="correo@ejemplo.com"
+                              className="
+                                transition-all hover:scale-105 
+                                border-none 
+                                rounded-none 
+                                outline-none focus:outline-none 
+                                focus:ring-0 focus:ring-offset-0
+                                border-b-2 border-solid border-blue-700 
+                              "
+                            />
+                            <input
+                            id="PassWord"
+                              type="password"
+                              placeholder="Contraseña"
+                              className="
+                                transition-all hover:scale-105 
+                                border-none 
+                                rounded-none 
+                                outline-none focus:outline-none 
+                                focus:ring-0 focus:ring-offset-0
+                                border-b-2 border-solid border-blue-700 
+                              "
+                            />
+                    </div>
+                    <div>
 
-                <RoleCard
-                  icon={<User size={40} />}
-                  title="Paciente"
-                  selected={selectedRole === "patient"}
-                  onClick={() => setSelectedRole("patient")}
-                />
+                    </div>
+                  </div>
+                </div>
+              </section>
 
-                <RoleCard
-                  icon={<Stethoscope size={40} />}
-                  title="Doctor"
-                  selected={selectedRole === "doctor"}
-                  onClick={() => setSelectedRole("doctor")}
-                />
 
-              </div>
 
-            {/* Correo */}
 
-            <div className="space-y-2">
-              <Label htmlFor="email">
-                Correo electrónico
-              </Label>
-
-              <div className="relative transition-all hover:scale-105 hover:bg-slate-100">
-
-                <Mail
-                  size={18}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 "
-                />
-
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="correo@hospital.com"
-                  className="h-12 rounded-xl pl-10"
-                />
-
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="password">
-                Contraseña
-              </Label>
-
-              <div className="relative transition-all hover:scale-105 hover:bg-slate-100">
-
-                <Lock
-                  size={18}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                />
-
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  className="h-12 rounded-xl pl-10"
-                />
-
-              </div>
-            </div>
-
-            <Button
-              className="h-12 w-full rounded-xl text-base font-semibold transition-all hover:scale-105 cursor-pointer"
-            >
-              Iniciar sesión
-            </Button>
-            <div className="m-w flex items-center justify-center pb-5">
-              <Label htmlFor="register">
-                Si no tienes cuenta<button className="cursor-pointer hover:text-blue-800"   
-                onClick={() =>
-                  navigate(
-                    selectedRole === "patient"
-                      ? "/register/patient"
-                      : "/register/doctor"
-                  )
-                }>registrate</button>
-              </Label>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
-  );
+    )
 }
 
-export default LoginPage;
+export default LoginPage
