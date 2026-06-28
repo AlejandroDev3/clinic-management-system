@@ -17,10 +17,10 @@ function RoleCard({
   return (
     <Card
       onClick={onClick}
-      className={`cursor-pointer p-4 text-center transition-all hover:scale-105 ${
+      className={`cursor-pointer p-4 text-center transition-all hover:scale-105 bg-gray-100/90 ${
         selected
-          ? "border-2 border-blue-500 bg-blue-50 shadow-lg"
-          : "border hover:bg-slate-100"
+          ? "border-2 border-yellow-500 bg-yellow-50/80 shadow-lg"
+          : "border hover:bg-slate-100/90"
       }`}
     >
       <div className="flex justify-center">
